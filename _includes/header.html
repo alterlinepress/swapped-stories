@@ -1,10 +1,11 @@
 {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
 {% assign author_doc = site.authors | where: "slug", page.author_id | first %}
 {% assign work_doc   = site.works   | where: "slug", page.work_id   | first %}
+{% assign cover_img = include.cover_img | default: page.cover-img %}
 
-{% if page.cover-img %}
-  <div id="header-big-imgs" data-num-img={% if page.cover-img.first %}{{ page.cover-img.size }}{% else %}1{% endif %}
-    {% for bigimg in page.cover-img %}
+{% if cover_img %}
+  <div id="header-big-imgs" data-num-img={% if cover_img.first %}{{ cover_img.size }}{% else %}1{% endif %}
+    {% for bigimg in cover_img %}
     {% assign imgnum = forloop.index %}
     {% for imginfo in bigimg %}
     {% if imginfo[0] %}
@@ -18,9 +19,9 @@
   ></div>
 {% endif %}
 
-<header class="header-section {% if page.cover-img %}has-img{% endif %}">
-<div class="intro-header {% if page.cover-img %} big-img {% endif %}">
-  {% if page.cover-img or page.title %}
+<header class="header-section {% if cover_img %}has-img{% endif %}">
+<div class="intro-header {% if cover_img %} big-img {% endif %}">
+  {% if cover_img or page.title %}
   <div class="container-md">
     <div class="row">
       <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
@@ -72,7 +73,7 @@
     </div>
   </div>
   {% endif %}
-  {% if page.cover-img %}<span class='img-desc'></span>{% endif %}
+  {% if cover_img %}<span class='img-desc'></span>{% endif %}
 </div>
 
 {% if page.header-extra %}
