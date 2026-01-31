@@ -1,0 +1,47 @@
+---
+layout: page
+---
+
+{% assign author_name = page.name | default: page.title %}
+{% assign author_id = page.slug %}
+
+<p>
+  This page collects all adapted entries associated with <strong>{{ author_name }}</strong>.
+</p>
+
+{% comment %}
+  Works for this author (expects _works/*.md to include author_id: author-slug )
+{% endcomment %}
+{% assign works_for_author = site.works | where: "author_id", author_id | sort: "title" %}
+
+{% if works_for_author and works_for_author.size > 0 %}
+
+  {% for w in works_for_author %}
+    {% assign work_title = w.title | default: w.name %}
+    {% assign entries = site.posts | where: "work_id", w.slug %}
+
+    <h3>
+      <a href="{{ w.url | relative_url }}">{{ work_title }}</a>
+      {% if entries and entries.size > 0 %}
+        <small>({{ entries | size }})</small>
+      {% endif %}
+    </h3>
+
+    {% if entries and entries.size > 0 %}
+      {% assign entries_sorted = entries | sort: "date" %}
+      <ul>
+        {% for post in entries_sorted %}
+          <li>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <span class="text-muted">— {{ post.date | date: "%B %-d, %Y" }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-muted">No entries published for this work yet.</p>
+    {% endif %}
+  {% endfor %}
+
+{% else %}
+  <p class="text-muted">No works found for this author yet.</p>
+{% endif %}
