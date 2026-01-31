@@ -1,0 +1,63 @@
+---
+layout: page
+---
+
+{% assign work_title = page.title | default: page.name %}
+{% assign work_id = page.slug %}
+{% assign author_doc = site.authors | where: "slug", page.author_id | first %}
+
+<p>
+  This page contains all published chapters for
+  <strong>{{ work_title }}</strong>
+  {% if author_doc %}
+    by <a href="{{ author_doc.url | relative_url }}">
+      {{ author_doc.name | default: author_doc.title }}
+    </a>
+  {% endif %}.
+</p>
+
+{% if page.description %}
+  <p class="text-muted">{{ page.description }}</p>
+{% endif %}
+
+{% assign all_entries = site.posts | where: "work_id", work_id %}
+
+{% assign entries_with_chapter = all_entries | where_exp: "p", "p.chapter" | sort: "chapter" %}
+{% assign entries_without_chapter = all_entries | where_exp: "p", "p.chapter == nil" | sort: "date" %}
+
+{% if all_entries.size > 0 %}
+  <h2>Chapters</h2>
+
+  {% if entries_with_chapter.size > 0 %}
+    <ol>
+      {% for post in entries_with_chapter %}
+        <li class="mb-2">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <span class="text-muted">
+            — Chapter {{ post.chapter }}
+          </span>
+        </li>
+      {% endfor %}
+    </ol>
+  {% endif %}
+
+  {% if entries_without_chapter.size > 0 %}
+    {% if entries_with_chapter.size > 0 %}
+      <h3>Other entries</h3>
+    {% endif %}
+
+    <ul>
+      {% for post in entries_without_chapter %}
+        <li class="mb-2">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <span class="text-muted">
+            — {{ post.date | date: "%B %-d, %Y" }}
+          </span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+{% else %}
+  <p class="text-muted">No entries published for this work yet.</p>
+{% endif %}
