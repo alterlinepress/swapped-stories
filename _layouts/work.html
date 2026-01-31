@@ -9,13 +9,23 @@ layout: page
 {% assign entry_type_plural = page.entry_type_plural | default: entry_type | append: "s" %}
 
 <p>
-  This page contains all published {{ entry_type_plural }} for
   <strong>{{ work_title }}</strong>
   {% if author_doc %}
     by <a href="{{ author_doc.url | relative_url }}">
       {{ author_doc.name | default: author_doc.title }}
     </a>
-  {% endif %}.
+  {% endif %}
+  is presented here as a series of edited and adapted
+  {{ entry_type_plural }},
+  based on the
+  {% if page.source_url %}
+    <a href="{{ page.source_url }}" target="_blank" rel="noopener">
+      original public-domain text
+    </a>
+  {% else %}
+    original public-domain text
+  {% endif %}
+  and published by {{ site.title }}.
 </p>
 
 {% if page.description %}
