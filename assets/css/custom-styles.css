@@ -1,0 +1,22 @@
+/* Darken Beautiful Jekyll cover image headers */
+body .intro-header.big-img {
+  position: relative;
+}
+
+/* Overlay */
+body .intro-header.big-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.50);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Keep the heading text above the overlay */
+body .intro-header.big-img .container-md,
+body .intro-header.big-img .post-heading {
+  position: relative;
+  z-index: 2;
+}
+
