@@ -80,6 +80,11 @@
     color:var(--muted)!important;
     border-color:var(--border)!important;
   }
+
+  /* YouTube embeds */
+  .ratio {
+    background-color: #000 !important;
+  }
 }
 
 /* ===== Common application (works for both light + dark) ===== */
@@ -101,3 +106,14 @@ a:is(:hover,:focus){color:var(--hover)!important}
 }
 .table-striped tbody tr:nth-of-type(odd) > *{background-color:var(--stripe)!important}
 .table-hover tbody tr:hover > *{background-color:var(--hoverRow)!important}
+
+/* Remove white border / background around YouTube embeds */
+.ratio,
+.ratio > iframe {
+  background: transparent !important;
+}
+
+.ratio > iframe {
+  display: block;
+  border: 0;
+}
