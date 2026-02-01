@@ -20,3 +20,20 @@ body .intro-header.big-img .post-heading {
   z-index: 2;
 }
 
+/* Poem styling */
+.poem {
+  margin: 1.5rem auto;
+  padding-left: 1.25rem;
+  border-left: 3px solid #e0e0e0;
+  font-style: italic;
+  max-width: 40em;
+}
+
+.poem p {
+  margin-bottom: 0.5rem;
+}
+
+.poem p:last-child {
+  margin-bottom: 0;
+}
+
