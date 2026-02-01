@@ -41,6 +41,44 @@ layout: page
   <p class="text-muted">{{ page.description }}</p>
 {% endif %}
 
+{% if page.youtube_url %}
+  {% assign yt = page.youtube_url | strip %}
+  {% assign yt_video_id = nil %}
+  {% assign yt_playlist_id = nil %}
+
+  {%- if yt contains "list=" -%}
+    {% assign yt_playlist_id = yt | split: "list=" | last | split: "&" | first %}
+  {%- endif -%}
+
+  {%- if yt contains "youtu.be/" -%}
+    {% assign yt_video_id = yt | split: "youtu.be/" | last | split: "?" | first %}
+  {%- elsif yt contains "watch?v=" -%}
+    {% assign yt_video_id = yt | split: "watch?v=" | last | split: "&" | first %}
+  {%- elsif yt contains "/embed/" -%}
+    {% assign yt_video_id = yt | split: "/embed/" | last | split: "?" | first %}
+  {%- endif -%}
+
+  <div class="ratio ratio-16x9 my-4">
+    {% if yt_playlist_id and yt_video_id == nil %}
+    <p>Watch all {{ entry_type }} in this work on YouTube:</p>
+      <iframe
+        src="https://www.youtube.com/embed/videoseries?list={{ yt_playlist_id }}"
+        title="YouTube playlist"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    {% elsif yt_video_id %}
+    <p>Watch this {{ entry_type }} on YouTube:</p>
+      <iframe
+        src="https://www.youtube.com/embed/{{ yt_video_id }}{% if yt_playlist_id %}?list={{ yt_playlist_id }}{% endif %}"
+        title="YouTube video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    {% endif %}
+  </div>
+{% endif %}
+
 {% assign all_entries = site.posts | where: "work_id", work_id %}
 {% assign entries_with_chapter = all_entries | where_exp: "p", "p.chapter" | sort: "chapter" %}
 {% assign entries_without_chapter = all_entries | where_exp: "p", "p.chapter == nil" | sort: "date" %}
