@@ -1,39 +1,159 @@
-/* Darken Beautiful Jekyll cover image headers */
-body .intro-header.big-img {
-  position: relative;
+/* ===== Cover image darkening ===== */
+.intro-header.big-img { position: relative; }
+.intro-header.big-img::after{
+  content:""; position:absolute; inset:0;
+  background: rgba(0,0,0,.50);
+  z-index:1; pointer-events:none;
+}
+.intro-header.big-img .container-md,
+.intro-header.big-img .post-heading{ position:relative; z-index:2; }
+
+/* ===== Poem styling ===== */
+.poem{
+  margin:1.5rem auto; padding-left:1.25rem;
+  border-left:3px solid #e0e0e0;
+  font-style:italic; max-width:40em;
+}
+.poem p{ margin:0 0 .5rem; }
+.poem p:last-child{ margin-bottom:0; }
+
+/* ===== Theme variables (system dark mode) ===== */
+:root{
+  color-scheme: light dark;
+
+  --bg:#fff; --text:#222; --muted:#666;
+  --link:#0b66d6; --hover:#339D79;
+  --border:#e5e5e5; --card-bg:#fff; --code-bg:#f6f8fa;
+
+  --stripe: rgba(0,0,0,.03);
+  --hoverRow: rgba(0,0,0,.05);
+  --dropdownHoverBg: rgba(0,0,0,.06);
+  --dropdownActiveBg: rgba(0,0,0,.10);
 }
 
-/* Overlay */
-body .intro-header.big-img::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.50);
-  z-index: 1;
-  pointer-events: none;
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1115; --text:#e8e8e8; --muted:#a5a5a5;
+    --link:#7ab7ff;
+    --border:#2a2f3a; --card-bg:#151923; --code-bg:#1b2130;
+
+    --stripe: rgba(255,255,255,.04);
+    --hoverRow: rgba(255,255,255,.06);
+    --dropdownHoverBg: rgba(255,255,255,.08);
+    --dropdownActiveBg: rgba(255,255,255,.12);
+  }
+
+  /* Navbar + footer (theme hard-codes these, so override in dark only) */
+  .navbar, .navbar-custom, footer{
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+  }
+  .navbar a, .navbar-brand, .navbar-nav .nav-link, footer a{
+    color: var(--link) !important;
+  }
+
+  /* Dropdown menu (needs explicit background in dark) */
+  .dropdown-menu,
+  .dropdown-menu.show,
+  .dropdown-menu[data-bs-popper]{
+    background-color: var(--card-bg) !important;
+    border-color: var(--border) !important;
+  }
+  .dropdown-item{
+    color: var(--text) !important;
+    background-color: transparent !important;
+  }
+  .dropdown-item:hover, .dropdown-item:focus{
+    background-color: var(--dropdownHoverBg) !important;
+    color: var(--hover) !important;
+  }
+  .dropdown-item.active, .dropdown-item:active{
+    background-color: var(--dropdownActiveBg) !important;
+    color: var(--text) !important;
+  }
+
+  /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+    color: var(--text) !important;
+  }
+
+  /* Home page post titles specifically (Beautiful Jekyll) */
+  .post-preview h2,
+  .post-preview h3,
+  .blog-post h1,
+  .blog-post h2 {
+    color: var(--text) !important;
+  }
+
+  /* "Read More" links on home page */
+  .post-preview a,
+  .post-preview .post-read-more {
+    color: var(--link) !important;
+  }
+
+  .post-preview a:hover,
+  .post-preview .post-read-more:hover {
+    color: var(--hover) !important;
+  }
+
+  /* Tags on home page */
+  .blog-tags,
+  .blog-tags a {
+    color: var(--muted) !important;
+  }
+
+  .blog-tags a:hover {
+    color: var(--hover) !important;
+  }
+
+   /* Pagination container */
+  .pagination .page-link {
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+    border-color: var(--border) !important;
+  }
+
+  /* Hover / focus state */
+  .pagination .page-link:hover,
+  .pagination .page-link:focus {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: var(--hover) !important;
+    border-color: var(--hover) !important;
+  }
+
+  /* Disabled state */
+  .pagination .page-item.disabled .page-link {
+    background-color: var(--card-bg) !important;
+    color: var(--muted) !important;
+    border-color: var(--border) !important;
+  }
 }
 
-/* Keep the heading text above the overlay */
-body .intro-header.big-img .container-md,
-body .intro-header.big-img .post-heading {
-  position: relative;
-  z-index: 2;
+/* ===== Common application (works for both light + dark) ===== */
+body{ background:var(--bg); color:var(--text); }
+a{ color:var(--link); }
+a:hover, a:focus{ color:var(--hover) !important; }
+.text-muted{ color:var(--muted) !important; }
+
+hr, .border-top, .border-bottom{ border-color:var(--border) !important; }
+
+.card, .list-group-item, table, .table{
+  background-color: var(--card-bg);
+  color: var(--text);
 }
 
-/* Poem styling */
-.poem {
-  margin: 1.5rem auto;
-  padding-left: 1.25rem;
-  border-left: 3px solid #e0e0e0;
-  font-style: italic;
-  max-width: 40em;
-}
+pre, code, .highlight{ background:var(--code-bg); }
 
-.poem p {
-  margin-bottom: 0.5rem;
+/* Tables: cells/striping/hover */
+table th, table td,
+.table th, .table td, .table thead th{
+  background-color: var(--card-bg) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
 }
-
-.poem p:last-child {
-  margin-bottom: 0;
+.table-striped tbody tr:nth-of-type(odd) > *{
+  background-color: var(--stripe) !important;
 }
-
+.table-hover tbody tr:hover > *{
+  background-color: var(--hoverRow) !important;
+}
