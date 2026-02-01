@@ -71,24 +71,58 @@ layout: base
         {% include social-share.html %}
       {% endif %}
 
+      {%- assign prev_post = page.previous -%}
+      {%- assign next_post = page.next -%}
+
+      {%- if page.work_id and page.chapter -%}
+        {%- assign siblings = site.posts | where: "work_id", page.work_id -%}
+
+        {%- assign prev_chapter_num = nil -%}
+        {%- assign next_chapter_num = nil -%}
+
+        {%- for p in siblings -%}
+          {%- if p.chapter -%}
+            {%- if p.chapter < page.chapter -%}
+              {%- if prev_chapter_num == nil or p.chapter > prev_chapter_num -%}
+                {%- assign prev_chapter_num = p.chapter -%}
+              {%- endif -%}
+            {%- elsif p.chapter > page.chapter -%}
+              {%- if next_chapter_num == nil or p.chapter < next_chapter_num -%}
+                {%- assign next_chapter_num = p.chapter -%}
+              {%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if prev_chapter_num != nil -%}
+          {%- assign prev_post = siblings | where: "chapter", prev_chapter_num | first -%}
+        {%- endif -%}
+
+        {%- if next_chapter_num != nil -%}
+          {%- assign next_post = siblings | where: "chapter", next_chapter_num | first -%}
+        {%- endif -%}
+      {%- endif -%}
+
       <ul class="pagination blog-pager">
-        {% if page.previous.url %}
-        <li class="page-item previous">
-          <a class="page-link" href="{{ page.previous.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title | strip_html | xml_escape}}">
-            <i class="fas fa-arrow-left" alt="Previous Post"></i>
-            <span class="d-none d-sm-inline-block">Previous Post</span>
-          </a>
-        </li>
+        {% if prev_post and prev_post.url %}
+          <li class="page-item previous">
+            <a class="page-link" href="{{ prev_post.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{ prev_post.title | strip_html | xml_escape }}">
+              <i class="fas fa-arrow-left" alt="Previous Post"></i>
+              <span class="d-none d-sm-inline-block">Previous</span>
+            </a>
+          </li>
         {% endif %}
-        {% if page.next.url %}
-        <li class="page-item next">
-          <a class="page-link" href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title | strip_html | xml_escape}}">
-            <span class="d-none d-sm-inline-block">Next Post</span>
-            <i class="fas fa-arrow-right" alt="Next Post"></i>
-          </a>
-        </li>
+
+        {% if next_post and next_post.url %}
+          <li class="page-item next">
+            <a class="page-link" href="{{ next_post.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{ next_post.title | strip_html | xml_escape }}">
+              <span class="d-none d-sm-inline-block">Next</span>
+              <i class="fas fa-arrow-right" alt="Next Post"></i>
+            </a>
+          </li>
         {% endif %}
       </ul>
+
       {% include comments.html %}
     </div>
   </div>
