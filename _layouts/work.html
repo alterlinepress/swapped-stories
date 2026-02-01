@@ -5,8 +5,17 @@ layout: page
 {% assign work_title = page.title | default: page.name %}
 {% assign work_id = page.slug %}
 {% assign author_doc = site.authors | where: "slug", page.author_id | first %}
-{% assign entry_type = page.entry_type | default: "entry" %}
-{% assign entry_type_plural = page.entry_type_plural | default: entry_type | append: "s" %}
+
+{% assign entry_type = page.entry_type | default: "entries" %}
+
+{% case entry_type %}
+  {% when "chapters" %}
+    {% assign entry_type_singular = "chapter" %}
+  {% when "short stories" %}
+    {% assign entry_type_singular = "short story" %}
+  {% else %}
+    {% assign entry_type_singular = "entry" %}
+{% endcase %}
 
 <p>
   <strong>{{ work_title }}</strong>
@@ -16,7 +25,7 @@ layout: page
     </a>
   {% endif %}
   is presented here as a series of edited and adapted
-  {{ entry_type_plural }},
+  {{ entry_type }},
   based on the
   {% if page.source_url %}
     <a href="{{ page.source_url }}" target="_blank" rel="noopener">
@@ -37,7 +46,7 @@ layout: page
 {% assign entries_without_chapter = all_entries | where_exp: "p", "p.chapter == nil" | sort: "date" %}
 
 {% if all_entries.size > 0 %}
-  <h2>{{ entry_type_plural | capitalize }}</h2>
+  <h2>{{ entry_type | capitalize }}</h2>
 
   {% if entries_with_chapter.size > 0 %}
     <ol>
@@ -45,7 +54,7 @@ layout: page
         <li class="mb-2">
           <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
           <span class="text-muted">
-            — {{ entry_type | capitalize }} {{ post.chapter }}
+            — {{ entry_type_singular | capitalize }} #{{ post.chapter }}
           </span>
         </li>
       {% endfor %}
@@ -54,7 +63,7 @@ layout: page
 
   {% if entries_without_chapter.size > 0 %}
     {% if entries_with_chapter.size > 0 %}
-      <h3>Other {{ entry_type_plural }}</h3>
+      <h3>Other {{ entry_type }}</h3>
     {% endif %}
 
     <ul>
@@ -70,5 +79,5 @@ layout: page
   {% endif %}
 
 {% else %}
-  <p class="text-muted">No {{ entry_type_plural }} published for this work yet.</p>
+  <p class="text-muted">No {{ entry_type }} published for this work yet.</p>
 {% endif %}
