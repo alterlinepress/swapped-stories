@@ -18,6 +18,8 @@
   --stripe:rgba(0,0,0,.03);--hoverRow:rgba(0,0,0,.05);
   --dropdownHoverBg:rgba(0,0,0,.06);--dropdownActiveBg:rgba(0,0,0,.10);
   --pagerHoverBg:rgba(0,0,0,.06);
+
+  --accent:#339D79;--accentText:#fff;
 }
 
 @media (prefers-color-scheme:dark){
@@ -31,7 +33,6 @@
     --pagerHoverBg:rgba(255,255,255,.08);
   }
 
-  /* Theme hard-codes some colors; override only for dark mode */
   :is(h1,h2,h3,h4,h5,h6){color:var(--text)!important}
 
   :is(.navbar,.navbar-custom,footer){
@@ -44,10 +45,9 @@
   :is(.navbar,.navbar-custom,footer) a:is(:hover,:focus),
   :is(.navbar,.navbar-custom,footer) .nav-link:is(:hover,:focus),
   :is(.navbar,.navbar-custom,footer) .navbar-brand:is(:hover,:focus){
-    color: var(--hover) !important;
+    color:var(--hover)!important;
   }
 
-  /* Dropdown menu */
   :is(.dropdown-menu,.dropdown-menu.show,.dropdown-menu[data-bs-popper]){
     background-color:var(--card-bg)!important;
     border-color:var(--border)!important;
@@ -56,15 +56,12 @@
   .dropdown-item:is(:hover,:focus){background-color:var(--dropdownHoverBg)!important;color:var(--hover)!important}
   .dropdown-item:is(.active,:active){background-color:var(--dropdownActiveBg)!important;color:var(--text)!important}
 
-  /* Blog tags label + links (theme can hard-code these) */
   .blog-tags :is(span,a){color:var(--muted)!important}
   .blog-tags a:hover{color:var(--hover)!important}
 
-  /* "Read More" (keep only if theme hard-codes it) */
   .post-read-more{color:var(--link)!important}
   .post-read-more:hover{color:var(--hover)!important}
 
-  /* Pager buttons */
   .pagination .page-link{
     background-color:var(--card-bg)!important;
     color:var(--text)!important;
@@ -80,11 +77,6 @@
     color:var(--muted)!important;
     border-color:var(--border)!important;
   }
-
-  /* YouTube embeds */
-  .ratio {
-    background-color: #000 !important;
-  }
 }
 
 /* ===== Common application (works for both light + dark) ===== */
@@ -94,11 +86,9 @@ a:is(:hover,:focus){color:var(--hover)!important}
 .text-muted{color:var(--muted)!important}
 
 :is(hr,.border-top,.border-bottom){border-color:var(--border)!important}
-
 :is(.card,.list-group-item,table,.table){background-color:var(--card-bg);color:var(--text)}
 :is(pre,code,.highlight){background:var(--code-bg)}
 
-/* Tables: cells/striping/hover */
 :is(table th,table td,.table th,.table td,.table thead th){
   background-color:var(--card-bg)!important;
   color:var(--text)!important;
@@ -107,13 +97,45 @@ a:is(:hover,:focus){color:var(--hover)!important}
 .table-striped tbody tr:nth-of-type(odd) > *{background-color:var(--stripe)!important}
 .table-hover tbody tr:hover > *{background-color:var(--hoverRow)!important}
 
-/* Remove white border / background around YouTube embeds */
-.ratio,
-.ratio > iframe {
-  background: transparent !important;
+/* ===== YouTube card + responsive embed ===== */
+.yt-card{
+  border:1px solid var(--border);
+  border-radius:.5rem;
+  overflow:hidden;
+  background:var(--card-bg);
 }
+.yt-card__header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.75rem;
+  padding:.6rem .9rem;
+  background:var(--accent);
+  color:var(--accentText);
+  font-weight:600;
+}
+.yt-card__link{font-weight:600}
+.yt-card__link:hover,
+.yt-card__link:focus{opacity:.9}
+.yt-card__body{padding:.9rem}
 
-.ratio > iframe {
-  display: block;
-  border: 0;
+/* Keep links in the card white (overrides global hover) */
+.yt-card a,
+.yt-card a:hover,
+.yt-card a:focus{color:var(--accentText)!important}
+
+.yt-embed{
+  position:relative;
+  width:100%;
+  max-width:500px;
+  margin:0 auto;
+}
+.yt-embed::before{content:"";display:block;padding-top:56.25%}
+.yt-embed iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
 }
