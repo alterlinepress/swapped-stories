@@ -144,7 +144,7 @@ a:is(:hover,:focus){color:var(--hover)!important}
 }
 
 /* Sticky footer */
-html,body {height: 100%;}
-body{min-height: 100vh;display: flex;flex-direction: column;}
+html{ height: 100%; background: var(--bg); }
+body{min-height: 100vh;display: flex;flex-direction: column;background: var(--bg);}
 :is(main, [role="main"]) {flex: 1 0 auto;padding-bottom:3.125rem;}
 footer{margin-top: auto;}
