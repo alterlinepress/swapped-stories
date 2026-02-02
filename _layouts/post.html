@@ -46,6 +46,43 @@ layout: base
         </div>
       {% endif %}
 
+      {% if page.youtube_url %}
+        {% assign yt = page.youtube_url | strip %}
+        {% assign yt_id = nil %}
+
+        {%- if yt contains "youtu.be/" -%}
+          {% assign yt_id = yt | split: "youtu.be/" | last | split: "?" | first %}
+        {%- elsif yt contains "watch?v=" -%}
+          {% assign yt_id = yt | split: "watch?v=" | last | split: "&" | first %}
+        {%- elsif yt contains "/embed/" -%}
+          {% assign yt_id = yt | split: "/embed/" | last | split: "?" | first %}
+        {%- endif -%}
+
+        <div class="yt-card my-4">
+          <div class="yt-card__header">
+            <a class="yt-card__link" href="{{ page.youtube_url }}" target="_blank" rel="noopener">Watch on YouTube</a>
+          </div>
+
+          {% if yt_id %}
+            <div class="yt-card__body">
+              <div class="yt-embed">
+                <iframe
+                  src="https://www.youtube.com/embed/{{ yt_id }}"
+                  title="YouTube video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+            </div>
+          {% else %}
+            <div class="yt-card__body">
+              <a href="{{ page.youtube_url }}" target="_blank" rel="noopener">{{ page.youtube_url }}</a>
+            </div>
+          {% endif %}
+        </div>
+        <br>
+      {% endif %}
+
       <div class="blog-post">
         {{ content }}
       </div>
