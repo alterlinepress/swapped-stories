@@ -148,3 +148,21 @@ html{ height: 100%; background: var(--bg); }
 body{min-height: 100vh;display: flex;flex-direction: column;background: var(--bg);}
 :is(main, [role="main"]) {flex: 1 0 auto;padding-bottom:3.125rem;}
 footer{margin-top: auto;}
+
+/* Social share buttons: preserve brand colors on hover */
+#social-share-section .btn-social-icon {
+  color: #fff !important;
+}
+#social-share-section .btn-social-icon:hover,
+#social-share-section .btn-social-icon:focus {
+  color: #fff !important;
+  filter: brightness(1.08);   /* subtle hover feedback */
+}
+
+/* Tag buttons: keep white text on hover */
+.tag-btn,
+.tag-btn:hover,
+.tag-btn:focus {
+  color: #fff !important;
+}
+
