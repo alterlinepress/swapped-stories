@@ -35,9 +35,10 @@
 
   :is(h1,h2,h3,h4,h5,h6){color:var(--text)!important}
 
-  :is(.navbar,.navbar-custom,footer){
+  :is(.navbar,.navbar-custom,.navbar-collapse,footer){
     background-color:var(--card-bg)!important;
     color:var(--text)!important;
+    border-color:var(--border)!important;
   }
   :is(.navbar a,.navbar-brand,.navbar-nav .nav-link,footer a){
     color:var(--link)!important;
@@ -61,6 +62,8 @@
 
   .post-read-more{color:var(--link)!important}
   .post-read-more:hover{color:var(--hover)!important}
+
+  .post-preview{border-color:var(--border)!important}
 
   .pagination .page-link{
     background-color:var(--card-bg)!important;
