@@ -166,3 +166,6 @@ footer{margin-top: auto;}
   color: #fff !important;
 }
 
+/* Post preview images */
+.post-preview img {border-radius: 8px;}
+
