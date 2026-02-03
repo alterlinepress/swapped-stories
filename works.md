@@ -2,6 +2,8 @@
 layout: page
 title: Works
 permalink: /works/
+noindex: true
+sitemap: false
 ---
 
 Browse by book or collection. Each work page contains the full set of adapted chapters/stories.

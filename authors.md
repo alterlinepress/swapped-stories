@@ -2,6 +2,8 @@
 layout: page
 title: Authors
 permalink: /authors/
+noindex: true
+sitemap: false
 ---
 
 Browse by original author. Each author page lists all adapted chapters/stories associated with that author.
