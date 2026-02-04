@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About the Project
+description: An overview of the Swapped Stories project, which presents gender-swapped adaptations of classic literary works, organized by author, work, and chapter.
 ---
 
 Hi, welcome to Swapped Stories! 

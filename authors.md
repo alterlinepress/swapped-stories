@@ -4,6 +4,7 @@ title: Authors
 permalink: /authors/
 noindex: true
 sitemap: false
+description: A complete list of authors whose works have been adapted by the Swapped Stories project, with links to gender-swapped chapters. 
 ---
 
 Browse by original author. Each author page lists all adapted chapters/stories associated with that author.
