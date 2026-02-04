@@ -27,8 +27,53 @@
   {% capture description %}
     {%- if page.share-description -%}
       {{ page.share-description | strip_html | xml_escape }}
+
+    {%- elsif page.layout == 'post' and page.title -%}
+
+      {%- if page.description -%}
+        {{ page.description | strip_html | xml_escape }}
+
+      {%- else -%}
+        {%- assign work_title = nil -%}
+        {%- assign author_title = nil -%}
+
+        {%- if page.work_id -%}
+          {%- assign work_doc = site.works | where: "work_id", page.work_id | first -%}
+          {%- if work_doc == nil -%}
+            {%- assign work_doc = site.works | where: "slug", page.work_id | first -%}
+          {%- endif -%}
+          {%- if work_doc -%}
+            {%- assign work_title = work_doc.title -%}
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if page.author_id -%}
+          {%- assign author_doc = site.authors | where: "author_id", page.author_id | first -%}
+          {%- if author_doc == nil -%}
+            {%- assign author_doc = site.authors | where: "slug", page.author_id | first -%}
+          {%- endif -%}
+          {%- if author_doc -%}
+            {%- assign author_title = author_doc.title -%}
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if work_title and author_title -%}
+          {{ "The gender-swapped edition of " | append: page.title
+            | append: ", adapted from " | append: work_title
+            | append: " originally written by " | append: author_title
+            | append: ". Read the full chapter as part of the Swapped Stories project."
+            | strip_html | xml_escape }}
+
+        {%- else -%}
+          {{ "The gender-swapped adaptation of " | append: page.title
+            | append: ". Read the full chapter as part of the Swapped Stories project."
+            | strip_html | xml_escape }}
+        {%- endif -%}
+      {%- endif -%}
+
     {%- elsif page.subtitle -%}
       {{ page.subtitle | strip_html | xml_escape }}
+
     {%- else -%}
       {%- assign excerpt_length = site.excerpt_length | default: 50 -%}
       {{ page.content | strip_html | xml_escape | truncatewords: excerpt_length | strip }}
