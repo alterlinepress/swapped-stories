@@ -42,9 +42,16 @@ layout: page
       <a href="{{ post.url | absolute_url }}">
         <h2 class="post-title">{{ post.title | strip_html }}</h2>
 
-        {% if post.subtitle %}
+        {% assign matched_work = site.works | where: "work_id", post.work_id | first %}
+        {% assign display_subtitle = post.subtitle | strip %}
+
+        {% if matched_work and matched_work.entry_type == "short stories" and display_subtitle == "" %}
+          {% assign display_subtitle = "from " | append: matched_work.title %}
+        {% endif %}
+
+        {% if display_subtitle != "" %}
           <h3 class="post-subtitle">
-          {{ post.subtitle | strip_html }}
+            {{ display_subtitle | strip_html }}
           </h3>
         {% endif %}
       </a>
