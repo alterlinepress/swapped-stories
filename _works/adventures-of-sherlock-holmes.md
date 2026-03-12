@@ -1,5 +1,6 @@
 ---
 layout: work
+work_id: adventures-of-sherlock-holmes
 title: The Adventures of Sherlock Holmes
 author_id: arthur-conan-doyle
 entry_type: short stories

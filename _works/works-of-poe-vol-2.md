@@ -1,5 +1,6 @@
 ---
 layout: work
+work_id: works-of-poe-vol-2
 title: The Works of Edgar Allan Poe - Volume 2
 author_id: edgar-allan-poe
 entry_type: short stories

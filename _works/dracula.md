@@ -1,5 +1,6 @@
 ---
 layout: work
+work_id: dracula
 title: Dracula
 author_id: bram-stoker
 entry_type: chapters
