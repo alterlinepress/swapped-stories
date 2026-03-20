@@ -25,6 +25,7 @@ navbar-links:
     - Work: "works/"
     - Author: "authors/"
     - Tag: "tags/"
+  Latest: "latest/"
   About: "about/"
   Contact: "contact/"
 
@@ -268,6 +269,7 @@ timezone: "America/New York"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
+paginate_path: "/latest/page:num/"
 paginate: 5
 
 kramdown:

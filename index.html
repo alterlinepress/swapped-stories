@@ -2,9 +2,44 @@
 layout: home
 title: Swapped Stories
 subtitle: Gender-Swapped Classics
-share-title: Home | Swapped Stories
-share-description: Swapped Stories is a literary project presenting gender-swapped adaptations of classic works, with chapters organized by author and book.
+cover-img: /assets/img/open-book.jpg
+description: A literary project adapting public-domain texts through gender swaps.
 ---
 
-<p>Swapped Stories is a literary project presenting gender-swapped editions of classic works. Chapters are published
-    and organized by author and book, with new adaptations added regularly.</p>
+<div class="container-md">
+  <p>Swapped Stories is a literary experiment that adapts public-domain texts by swapping gendered language. The goal
+    is not just novelty, but to see how small changes in wording can alter character, power, sympathy, and the
+    assumptions readers bring to familiar stories.</p>
+
+  <section class="featured-entry-points">
+    <h2>Featured Works</h2>
+    <div class="featured-work-grid">
+      {% include featured-work-card.html
+        work_id="dracula"
+        title="Dracula"
+        url="/works/dracula/"
+        reason="A strong place to start for seeing how gender shifts tone, vulnerability, and power."
+      %}
+
+      {% include featured-work-card.html
+        work_id="adventures-of-sherlock-holmes"
+        title="Sherlock Holmes"
+        url="/tags/sherlock-holmes/"
+        reason="Especially good for noticing how authority, rationality, and competence get gendered."
+      %}
+
+      {% include featured-work-card.html
+        work_id="works-of-poe-vol-2"
+        title="Edgar Allan Poe"
+        url="/authors/edgar-allan-poe/"
+        reason="Useful for seeing how voice and atmosphere change when gender assumptions move underneath the text."
+      %}
+    </div>
+  </section>
+
+  <p><a href="{{ '/latest/' | relative_url }}">Read the latest adaptations</a></p>
+
+  <p><a href="{{ '/about/' | relative_url }}">Learn more about the project</a></p>
+
+  <p><a href="{{ '/works/' | relative_url }}">Browse by work</a></p>
+</div>
