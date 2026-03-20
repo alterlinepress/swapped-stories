@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: page
 title: Swapped Stories
 subtitle: Gender-Swapped Classics
 cover-img: /assets/img/open-book.jpg
@@ -36,10 +36,57 @@ description: A literary project adapting public-domain texts through gender swap
       %}
     </div>
   </section>
+  <section class="latest-adaptations">
+    <h2>Latest Adaptations</h2>
 
-  <p><a href="{{ '/latest/' | relative_url }}">Read the latest adaptations</a></p>
+    <div class="latest-adaptations-list">
+      {% for post in site.posts limit:3 %}
+        {%- capture thumbnail -%}
+          {% if post.thumbnail-img %}
+            {{ post.thumbnail-img }}
 
-  <p><a href="{{ '/about/' | relative_url }}">Learn more about the project</a></p>
+          {% elsif post.work_id and post.chapter %}
+            /assets/thumbnails/{{ post.work_id }}/chapter-{{ post.chapter }}_thumbnail_horizontal.webp
 
-  <p><a href="{{ '/works/' | relative_url }}">Browse by work</a></p>
+          {% elsif post.cover-img %}
+            {% if post.cover-img.first %}
+              {{ post.cover-img[0].first.first }}
+            {% else %}
+              {{ post.cover-img }}
+            {% endif %}
+          {% endif %}
+        {%- endcapture -%}
+        {% assign thumbnail = thumbnail | strip %}
+
+        <article class="latest-adaptation-item{% if thumbnail == '' %} latest-adaptation-item-no-thumb{% endif %}">
+          {% if thumbnail != "" %}
+            <a class="latest-adaptation-thumb" href="{{ post.url | relative_url }}">
+              <img src="{{ thumbnail | relative_url }}" alt="Thumbnail for {{ post.title }}">
+            </a>
+          {% endif %}
+
+          <div class="latest-adaptation-content">
+            <h3 class="latest-adaptation-title">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+
+            <div class="latest-adaptation-excerpt">
+              {{ post.excerpt | strip_html | truncatewords: 24 }}
+              <a href="{{ post.url | relative_url }}" class="latest-adaptation-readmore"><b>[Read more]</b></a>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    <div class="latest-adaptation-more">
+      <ul class="pagination main-pager">
+        <li class="page-item next">
+          <a class="page-link" href="{{ '/latest/' | relative_url }}">
+            <span class="d-none d-sm-inline-block">View More</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
 </div>
