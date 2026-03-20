@@ -1,0 +1,20 @@
+<div class="featured-work-card">
+  <a class="featured-work-link" href="{{ include.url | relative_url }}">
+    <img
+      class="featured-work-image"
+      src="{{ '/assets/covers/' | append: include.work_id | append: '_cover_horizontal.webp' | relative_url }}"
+      alt="Cover for {{ include.title }}"
+    >
+
+    <div class="featured-work-overlay">
+      <div class="featured-work-content">
+        <h3 class="featured-work-title">{{ include.title }}</h3>
+
+        <div class="featured-work-extra">
+          <p class="featured-work-reason">{{ include.reason }}</p>
+          <span class="featured-work-button">Start Reading</span>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
