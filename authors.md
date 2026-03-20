@@ -4,6 +4,7 @@ title: Authors
 permalink: /authors/
 noindex: true
 sitemap: false
+cover-img: /assets/img/handwriting.jpg
 description: A complete list of authors whose works have been adapted by the Swapped Stories project, with links to gender-swapped chapters. 
 ---
 

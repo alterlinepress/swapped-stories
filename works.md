@@ -4,6 +4,7 @@ title: Works
 permalink: /works/
 noindex: true
 sitemap: false
+cover-img: /assets/img/book-pen.jpg
 description: A complete list of books and collections adapted by the Swapped Stories project, with links to gender-swapped chapters.
 ---
 
