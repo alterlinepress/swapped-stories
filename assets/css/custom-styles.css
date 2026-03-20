@@ -189,6 +189,16 @@ a:is(:hover,:focus){color:var(--hover)!important}
   display:block;
 }
 
+/* Project kicker */
+.project-kicker{
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.82);
+}
+
 /* Sticky footer */
 html{ height: 100%; background: var(--bg); }
 body{min-height: 100vh;display: flex;flex-direction: column;background: var(--bg);}
