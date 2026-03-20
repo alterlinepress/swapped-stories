@@ -1,15 +1,31 @@
 ---
 layout: page
 title: About the Project
+subtitle: Welcome to Swapped Stories!
+cover-img: /assets/img/bookshelf.jpg
 description: An overview of the Swapped Stories project, which presents gender-swapped adaptations of classic literary works, organized by author, work, and chapter.
 ---
 
-Hi, welcome to Swapped Stories! 
+This is a literary project that adapts public-domain texts by swapping gendered language. By changing pronouns, titles, family roles, and other gendered terms while preserving the original structure as closely as possible, the project explores how gender shapes the way readers interpret character, authority, vulnerability, and voice.
 
-Here, I take classic stories and swap the gendered language—he becomes she, queens become kings, forefathers become foremothers. Sometimes it’s subtle, sometimes it changes the whole feel of the story.
+Because these works are often familiar, even small changes can feel surprisingly revealing. A shift in wording can change how a scene feels, how a narrator is perceived, or what a reader assumes about a character.
 
-Each reading is carefully adapted, edited, and produced with custom gender-swapped text, curated pacing, and simple visuals designed for comfortable listening. 
+## Why swap gender in classic texts?
 
-If you’re into literature, language, or just looking at old stories in a new way, please consider subscribing to the [YouTube Channel](https://www.youtube.com/@SwappedStories). A new gender-swapped story is published every week!
+Readers do not approach literature neutrally. Gendered language carries expectations about power, innocence, rationality, danger, intimacy, and social role. In many texts, those expectations are so embedded that they become easy to overlook.
 
-All works on this channel are sourced from the public domain or used with the express permission of the author.
+Swapped Stories uses adaptation to make those expectations easier to see. By changing a familiar text in one specific way, the project invites readers to notice what shifts: who seems authoritative, who seems vulnerable, who appears transgressive, and what kinds of behavior feel more or less acceptable depending on gender.
+
+## How are the adaptations made?
+
+The project works with texts in the public domain or with the express permission of the author. Adaptations are created by swapping gendered language while preserving the wording, structure, and style of the original as closely as possible.
+
+These are not meant to replace the originals or to suggest that gender can be reduced to word substitution. They are interpretive experiments that explore how gendered language shapes reading.
+
+## How can I start reading?
+
+You can browse adaptations by [work](/works), [author](/authors), or [tag](/tags), or start with the featured works on the homepage. The [Latest](/latest) page collects the most recent additions.
+
+## How can I get in touch?
+
+For questions, suggestions, collaborations, or media inquiries, please visit the [Contact](/contact) page.
