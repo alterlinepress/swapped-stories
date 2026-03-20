@@ -3,6 +3,10 @@
 .intro-header.big-img::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:1;pointer-events:none}
 .intro-header.big-img :is(.container-md,.post-heading){position:relative;z-index:2}
 
+/* ===== Cover image height scaling ===== */
+.intro-header.big-img .page-heading, .intro-header.big-img .post-heading {padding: 4.5rem 0;}
+@media (min-width: 1200px) {.intro-header.big-img .page-heading, .intro-header.big-img .post-heading {padding: 6rem 0;}}
+
 /* ===== Poem styling ===== */
 .poem{margin:1.5rem auto;padding-left:1.25rem;border-left:3px solid #e0e0e0;font-style:italic;max-width:40em}
 .poem p{margin:0 0 .5rem}
