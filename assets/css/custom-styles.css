@@ -412,3 +412,120 @@ footer{margin-top: auto;}
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Contact page ===== */
+
+.contact-intro {
+  max-width: 42rem;
+  margin: 0 auto 1.75rem;
+}
+
+.contact-card {
+  max-width: 42rem;
+  margin: 0 auto 2.5rem;
+  padding: 1.25rem 1.25rem 1.4rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.contact-card__title {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+}
+
+.contact-card__note {
+  margin-bottom: 1.25rem;
+  color: var(--muted);
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-form__field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.contact-form__field label {
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.contact-form__field input,
+.contact-form__field textarea {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  line-height: 1.5;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contact-form__field textarea {
+  min-height: 12rem;
+  resize: vertical;
+}
+
+.contact-form__field input::placeholder,
+.contact-form__field textarea::placeholder {
+  color: var(--muted);
+}
+
+.contact-form__field input:focus,
+.contact-form__field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(51, 157, 121, 0.18);
+}
+
+.contact-form__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-width: 10rem;
+  padding: 0.8rem 1.1rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accentText);
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contact-form__submit:hover,
+.contact-form__submit:focus {
+  color: var(--accentText) !important;
+  text-decoration: none;
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.contact-form__submit:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(51, 157, 121, 0.22);
+}
+
+.contact-form__honeypot {
+  display: none;
+}
+
+@media (max-width: 576px) {
+  .contact-card {
+    padding: 1rem;
+    border-radius: 0.65rem;
+  }
+
+  .contact-form__submit {
+    width: 100%;
+  }
+}
