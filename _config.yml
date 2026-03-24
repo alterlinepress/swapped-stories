@@ -133,7 +133,7 @@ edit_page_button: false
 navbar-var-length: false
 
 # The keywords to associate with your website, for SEO purposes
-keywords: "swapped stories,classic literature,public domain books,public domain adaptations,rewritten classics,gender swapped stories,gender in literature,inclusive language,literary analysis,reimagined classics,booktube,storytelling,literature experiment"
+keywords: "swapped stories,gender swapped audiobook,classic literature,public domain books,public domain adaptations,rewritten classics,gender swapped stories,gender in literature,inclusive language,literary analysis,reimagined classics,booktube,storytelling,literature experiment"
 
 ######################################
 # --- Colours / background image --- #
@@ -170,6 +170,7 @@ site-css:
 # If you have common JavaScript files that should be included in every page, list them here
 site-js:
   - "/assets/js/external-links.js"
+  - "/assets/js/next-book-vote.js"
 
 #################################
 # --- Web Analytics Section --- #
