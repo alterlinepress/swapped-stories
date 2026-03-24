@@ -90,3 +90,5 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+
+{% include next-book-vote.html %}
