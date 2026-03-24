@@ -529,3 +529,21 @@ footer{margin-top: auto;}
     width: 100%;
   }
 }
+
+.contact-success,
+.contact-error {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+}
+
+.contact-success h3 {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+}
+
+.contact-error {
+  color: #8a1f1f;
+}
