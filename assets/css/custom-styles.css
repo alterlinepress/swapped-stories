@@ -777,3 +777,40 @@ footer{margin-top: auto;}
 .work-entry-item {
   margin-bottom: 1rem;
 }
+.intro-header.big-img .work-heading,
+.intro-header.no-img .work-heading {
+  padding: 3.75rem 0 2.75rem;
+}
+
+@media (min-width: 1200px) {
+  .intro-header.big-img .work-heading,
+  .intro-header.no-img .work-heading {
+    padding: 4.5rem 0 3.25rem;
+  }
+}
+
+.work-heading {
+  max-width: 720px;
+}
+
+.work-heading h1 {
+  margin-bottom: 0.35rem;
+  font-size: 3.2rem;
+  line-height: 1.05;
+}
+
+.work-meta-line {
+  font-style: italic;
+}
+
+@media (max-width: 767.98px) {
+  .work-heading h1 {
+    font-size: 2.5rem;
+    line-height: 1.08;
+  }
+
+  .work-meta-line {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
