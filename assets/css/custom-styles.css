@@ -3,7 +3,8 @@
 .intro-header.big-img::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:1;pointer-events:none}
 .intro-header.big-img .container-md,
 .intro-header.big-img .post-heading,
-.intro-header.big-img .work-heading {
+.intro-header.big-img .work-heading,
+.intro-header.big-img .author-heading {
   position: relative;
   z-index: 2;
 }
@@ -777,6 +778,45 @@ footer{margin-top: auto;}
 
 .author-work-entry {
   margin-bottom: 1rem;
+}
+
+.intro-header.big-img .author-heading,
+.intro-header.no-img .author-heading {
+  padding: 3.75rem 0 2.75rem;
+}
+
+@media (min-width: 1200px) {
+  .intro-header.big-img .author-heading,
+  .intro-header.no-img .author-heading {
+    padding: 4.5rem 0 3.25rem;
+  }
+}
+
+.author-heading {
+  max-width: 720px;
+}
+
+.author-heading h1 {
+  margin-bottom: 0.35rem;
+  font-size: 3.2rem;
+  line-height: 1.05;
+}
+
+.author-meta-line {
+  display: block;
+  font-style: italic;
+}
+
+@media (max-width: 767.98px) {
+  .author-heading h1 {
+    font-size: 2.5rem;
+    line-height: 1.08;
+  }
+
+  .author-meta-line {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
 }
 
 /* Work */
