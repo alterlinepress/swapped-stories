@@ -879,3 +879,65 @@ footer{margin-top: auto;}
 .works-list .work-row p {
   opacity: 0.75;
 }
+
+/* inline quote callouts */
+blockquote.inline-quote-callout {
+  position: relative;
+  display: block;
+  width: min(100%, 30rem);
+  max-width: 30rem;
+  margin: 2.75rem auto;
+  padding: 1.4rem 1.8rem;
+  background: transparent;
+  border: 0;
+  text-align: left;
+
+  /* reset default blockquote spacing */
+  margin-inline: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inline-quote-callout::before,
+.inline-quote-callout::after {
+  position: absolute;
+  font-size: 2.8rem;
+  line-height: 1;
+  font-style: normal;
+  color: var(--link);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.inline-quote-callout::before {
+  content: "“";
+  top: 0.15rem;
+  left: 0.7rem;
+}
+
+.inline-quote-callout::after {
+  content: "”";
+  bottom: 0.15rem;
+  right: 0.7rem;
+}
+
+.inline-quote-callout p {
+  margin: 0;
+  padding: 0 1.1rem;
+  font-size: 1.1rem;
+  opacity: 0.9;
+  line-height: 1.9;
+  font-style: italic;
+  white-space: pre-line;
+}
+
+.additional-quotes {
+  margin-top: 3rem;
+}
+
+.additional-quotes-heading {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
