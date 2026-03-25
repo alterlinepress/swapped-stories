@@ -519,17 +519,6 @@ footer{margin-top: auto;}
   display: none;
 }
 
-@media (max-width: 576px) {
-  .contact-card {
-    padding: 1rem;
-    border-radius: 0.65rem;
-  }
-
-  .contact-form__submit {
-    width: 100%;
-  }
-}
-
 .contact-success,
 .contact-error {
   margin-top: 1rem;
@@ -545,7 +534,7 @@ footer{margin-top: auto;}
 }
 
 .contact-error {
-  color: #8a1f1f;
+  color: #c96b6b;
 }
 
 .contact-card--compact {
@@ -555,6 +544,8 @@ footer{margin-top: auto;}
 .contact-form--compact {
   gap: 0.85rem;
 }
+
+/* ===== Vote form ===== */
 
 .vote-group {
   border: 0;
@@ -605,4 +596,118 @@ footer{margin-top: auto;}
 
 .vote-option--other small {
   display: none;
+}
+
+/* ===== Post footer ===== */
+
+.post-footer {
+  max-width: 40rem;
+  margin: 2.5rem auto 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.post-footer__closing {
+  text-align: center;
+}
+
+.post-footer__thanks {
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+}
+
+.post-footer__summary {
+  margin-bottom: 0.35rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.post-footer__engagement {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.post-footer__button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.engagement-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.engagement-toggle:hover,
+.engagement-toggle:focus {
+  background: rgba(51, 157, 121, 0.08);
+  outline: none;
+  text-decoration: none;
+}
+
+.post-footer__panel-row {
+  width: 100%;
+}
+
+.engagement-panel {
+  width: 100%;
+}
+
+.engagement-panel[hidden] {
+  display: none;
+}
+
+.post-footer .contact-card {
+  width: 100%;
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 0.9rem;
+}
+
+.post-footer .contact-card__title {
+  font-size: 1.2rem;
+  margin-bottom: 0.35rem;
+}
+
+.post-footer .contact-card__note {
+  margin-bottom: 0.8rem;
+}
+
+.post-footer .vote-option {
+  padding: 0.7rem 0.85rem;
+}
+
+.post-footer .contact-form__submit {
+  min-width: 0;
+  padding: 0.7rem 1rem;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 576px) {
+  .contact-card {
+    padding: 1rem;
+    border-radius: 0.65rem;
+  }
+
+  .contact-form__submit {
+    width: 100%;
+  }
+
+  .post-footer .contact-card {
+    padding: 0.95rem;
+  }
 }
