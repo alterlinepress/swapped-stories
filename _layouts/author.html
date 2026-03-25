@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: base
 ---
 
 {% assign author_name = page.name | default: page.title %}
@@ -12,84 +12,126 @@ layout: page
   {% assign total_entries = total_entries | plus: work_entries.size %}
 {% endfor %}
 
-<div class="author-summary mb-4">
-  <p class="text-muted mb-1">
-    {{ works_for_author.size }} {% if works_for_author.size == 1 %}work{% else %}works{% endif %}
-    ·
-    {{ total_entries }} published {% if total_entries == 1 %}adaptation{% else %}adaptations{% endif %}
-  </p>
-  <p class="text-muted mb-0">
-    Gender-swapped adaptations based on works by {{ author_name }}.
-  </p>
-</div>
+{%- capture effective_cover -%}
+  {% if page.cover-img %}
+    {% if page.cover-img.first %}
+      {{ page.cover-img[0].first.first }}
+    {% else %}
+      {{ page.cover-img }}
+    {% endif %}
+  {% else %}
+    /assets/img/book-pen.jpg
+  {% endif %}
+{%- endcapture -%}
+{% assign effective_cover = effective_cover | strip %}
 
-{% if works_for_author and works_for_author.size > 0 %}
+<header class="header-section {% if effective_cover != "" %}has-img{% endif %}">
+  {% if effective_cover != "" %}
+    <div class="intro-header big-img" style="background-image: url('{{ effective_cover | absolute_url }}');">
+  {% else %}
+    <div class="intro-header no-img">
+  {% endif %}
+      <div class="container-md">
+        <div class="row">
+          <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+            <div class="author-heading">
+              <h1>{{ author_name }}</h1>
 
-  {% for w in works_for_author %}
-    {% assign work_title = w.title | default: w.name %}
-    {% assign entries = site.posts | where: "work_id", w.slug | sort: "date" | reverse %}
+              <span class="author-meta-line post-meta">
+                {{ works_for_author.size }}
+                {% if works_for_author.size == 1 %}work{% else %}works{% endif %}
+                <span class="middot">&middot;</span>
+                {{ total_entries }}
+                published
+                {% if total_entries == 1 %}adaptation{% else %}adaptations{% endif %}
+              </span>
 
-    {%- capture work_image -%}
-      {% if w.thumbnail-img %}
-        {{ w.thumbnail-img }}
-      {% elsif w.cover-img %}
-        {% if w.cover-img.first %}
-          {{ w.cover-img[0].first.first }}
-        {% else %}
-          {{ w.cover-img }}
-        {% endif %}
-      {% endif %}
-    {%- endcapture -%}
-    {% assign work_image = work_image | strip %}
-
-    <section class="author-work mb-5">
-      {% if work_image != "" %}
-        <div class="author-work-hero" style="background-image: url('{{ work_image | absolute_url }}');">
-          <div class="author-work-hero-overlay">
-            <h2 class="author-work-title mb-1">
-              <a href="{{ w.url | relative_url }}">{{ work_title }}</a>
-            </h2>
-
-            <p class="author-work-meta mb-0">
-              {{ entries.size }} {% if entries.size == 1 %}adaptation{% else %}adaptations{% endif %}
-            </p>
+            </div>
           </div>
         </div>
-      {% else %}
-        <div class="author-work-header author-work-header-noimage">
-          <h2 class="author-work-title mb-1">
-            <a href="{{ w.url | relative_url }}">{{ work_title }}</a>
-          </h2>
+      </div>
+    </div>
+</header>
 
-          <p class="author-work-meta mb-0">
-            {{ entries.size }} published {% if entries.size == 1 %}adaptation{% else %}adaptations{% endif %}
-          </p>
-        </div>
+<main class="{% if page.full-width %}container-fluid{% else %}container-md{% endif %}" role="main">
+  <div class="row">
+    <div class="{% if page.full-width %}col{% else %}col-xl-8 offset-xl-2 col-lg-10 offset-lg-1{% endif %}">
+
+      {% if page.description %}
+        <p class="text-muted mb-4">{{ page.description }}</p>
       {% endif %}
 
-      {% if w.description %}
-        <p class="text-muted mt-3 mb-3">{{ w.description }}</p>
-      {% endif %}
+      {% if works_for_author and works_for_author.size > 0 %}
 
-      {% if entries and entries.size > 0 %}
-        <ul class="list-unstyled mb-0 author-work-entry-list">
-          {% for post in entries %}
-            <li class="author-work-entry">
-              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-              <div class="text-muted small">
-                Published {{ post.date | date: "%B %-d, %Y" }}
+        {% for w in works_for_author %}
+          {% assign work_title = w.title | default: w.name %}
+          {% assign entries = site.posts | where: "work_id", w.slug | sort: "date" %}
+
+          {%- capture work_image -%}
+            {% if w.thumbnail-img %}
+              {{ w.thumbnail-img }}
+            {% elsif w.cover-img %}
+              {% if w.cover-img.first %}
+                {{ w.cover-img[0].first.first }}
+              {% else %}
+                {{ w.cover-img }}
+              {% endif %}
+            {% endif %}
+          {%- endcapture -%}
+          {% assign work_image = work_image | strip %}
+
+          <section class="author-work mb-5">
+            {% if work_image != "" %}
+              <div class="author-work-hero" style="background-image: url('{{ work_image | absolute_url }}');">
+                <div class="author-work-hero-overlay">
+                  <h2 class="author-work-title mb-1">
+                    <a href="{{ w.url | relative_url }}">{{ work_title }}</a>
+                  </h2>
+
+                  <p class="author-work-meta mb-0">
+                    {{ entries.size }} {% if entries.size == 1 %}adaptation{% else %}adaptations{% endif %}
+                  </p>
+                </div>
               </div>
-            </li>
-          {% endfor %}
-        </ul>
+            {% else %}
+              <div class="author-work-header-noimage">
+                <h2 class="author-work-title mb-1">
+                  <a href="{{ w.url | relative_url }}">{{ work_title }}</a>
+                </h2>
+
+                <p class="author-work-meta mb-0">
+                  {{ entries.size }} published {% if entries.size == 1 %}adaptation{% else %}adaptations{% endif %}
+                </p>
+              </div>
+            {% endif %}
+
+            {% if w.description %}
+              <p class="text-muted mt-3 mb-3">{{ w.description }}</p>
+            {% endif %}
+
+            {% if entries and entries.size > 0 %}
+              <ul class="list-unstyled mb-0 author-work-entry-list">
+                {% for post in entries %}
+                  <li class="author-work-entry">
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    <div class="text-muted small">
+                      Published {{ post.date | date: "%B %-d, %Y" }}
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="text-muted mt-3 mb-0">No entries published for this work yet.</p>
+            {% endif %}
+          </section>
+
+          {% unless forloop.last %}<hr>{% endunless %}
+        {% endfor %}
+
       {% else %}
-        <p class="text-muted mt-3 mb-0">No entries published for this work yet.</p>
+        <p class="text-muted">No works found for this author yet.</p>
       {% endif %}
-    </section>
 
-    {% unless forloop.last %}<hr>{% endunless %}
-  {% endfor %}
-
-{% else %}
-  <p class="text-muted">No works found for this author yet.</p>
-{% endif %}
+    </div>
+  </div>
+</main>
