@@ -1,5 +1,7 @@
+{% assign form_id = include.form_id | default: "next-book-vote" %}
+
 <div class="contact-card contact-card--compact next-book-vote">
-  <h2 class="contact-card__title">Help pick the next book!</h2>
+  <h2 class="contact-card__title">Vote on the next book</h2>
 
   <form
     class="contact-form contact-form--compact js-next-book-vote-form"
@@ -7,7 +9,7 @@
     method="POST"
   >
     <fieldset class="vote-group">
-      <legend></legend>
+      <legend class="vote-group__legend"></legend>
 
       {% for book in site.data.next_book_choices %}
         <label class="vote-option">
@@ -34,9 +36,9 @@
     </fieldset>
 
     <div class="contact-form__field js-other-wrapper" hidden>
-      <label for="other-book">Suggested title and author</label>
+      <label for="{{ form_id }}-other-book">Suggested title and author</label>
       <input
-        id="other-book"
+        id="{{ form_id }}-other-book"
         type="text"
         name="other_book_suggestion"
         placeholder="Example: Jane Eyre — Charlotte Brontë"
