@@ -711,3 +711,64 @@ footer{margin-top: auto;}
     padding: 0.95rem;
   }
 }
+
+/* Author */
+.author-work-hero {
+  position: relative;
+  margin-bottom: 1.25rem;
+  min-height: 180px;
+  border-radius: 18px 18px 0 0;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.author-work-hero-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 180px;
+  padding: 1.5rem;
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.58) 45%,
+      rgba(0, 0, 0, 0.28) 100%
+    );
+}
+
+.author-work-header-noimage {
+  padding: 1.25rem 1.5rem;
+  border-radius: 18px 18px 0 0;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.author-work-title {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+.author-work-title a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.author-work-title a:hover,
+.author-work-title a:focus {
+  text-decoration: underline;
+}
+
+.author-work-meta {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.95rem;
+}
+
+.author-work-entry-list {
+  padding-top: 0.25rem;
+}
+
+.author-work-entry {
+  margin-bottom: 1rem;
+}

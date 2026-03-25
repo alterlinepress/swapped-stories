@@ -4,44 +4,90 @@ layout: page
 
 {% assign author_name = page.name | default: page.title %}
 {% assign author_id = page.slug %}
-
-<p>
-  <strong>{{ author_name }}</strong>’s works are presented here as edited and adapted versions,
-  based on original public-domain texts and published by {{ site.title }}.
-</p>
-
-
-{% comment %}
-  Works for this author (expects _works/*.md to include author_id: author-slug )
-{% endcomment %}
 {% assign works_for_author = site.works | where: "author_id", author_id | sort: "title" %}
+
+{% assign total_entries = 0 %}
+{% for w in works_for_author %}
+  {% assign work_entries = site.posts | where: "work_id", w.slug %}
+  {% assign total_entries = total_entries | plus: work_entries.size %}
+{% endfor %}
+
+<div class="author-summary mb-4">
+  <p class="text-muted mb-1">
+    {{ works_for_author.size }} {% if works_for_author.size == 1 %}work{% else %}works{% endif %}
+    ·
+    {{ total_entries }} published {% if total_entries == 1 %}adaptation{% else %}adaptations{% endif %}
+  </p>
+  <p class="text-muted mb-0">
+    Gender-swapped adaptations based on works by {{ author_name }}.
+  </p>
+</div>
 
 {% if works_for_author and works_for_author.size > 0 %}
 
   {% for w in works_for_author %}
     {% assign work_title = w.title | default: w.name %}
-    {% assign entries = site.posts | where: "work_id", w.slug %}
+    {% assign entries = site.posts | where: "work_id", w.slug | sort: "date" | reverse %}
 
-    <h3>
-      <a href="{{ w.url | relative_url }}">{{ work_title }}</a>
-      {% if entries and entries.size > 0 %}
-        <small>({{ entries | size }})</small>
+    {%- capture work_image -%}
+      {% if w.thumbnail-img %}
+        {{ w.thumbnail-img }}
+      {% elsif w.cover-img %}
+        {% if w.cover-img.first %}
+          {{ w.cover-img[0].first.first }}
+        {% else %}
+          {{ w.cover-img }}
+        {% endif %}
       {% endif %}
-    </h3>
+    {%- endcapture -%}
+    {% assign work_image = work_image | strip %}
 
-    {% if entries and entries.size > 0 %}
-      {% assign entries_sorted = entries | sort: "date" %}
-      <ul>
-        {% for post in entries_sorted %}
-          <li>
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            <span class="text-muted">— {{ post.date | date: "%B %-d, %Y" }}</span>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p class="text-muted">No entries published for this work yet.</p>
-    {% endif %}
+    <section class="author-work mb-5">
+      {% if work_image != "" %}
+        <div class="author-work-hero" style="background-image: url('{{ work_image | absolute_url }}');">
+          <div class="author-work-hero-overlay">
+            <h2 class="author-work-title mb-1">
+              <a href="{{ w.url | relative_url }}">{{ work_title }}</a>
+            </h2>
+
+            <p class="author-work-meta mb-0">
+              {{ entries.size }} {% if entries.size == 1 %}adaptation{% else %}adaptations{% endif %}
+            </p>
+          </div>
+        </div>
+      {% else %}
+        <div class="author-work-header author-work-header-noimage">
+          <h2 class="author-work-title mb-1">
+            <a href="{{ w.url | relative_url }}">{{ work_title }}</a>
+          </h2>
+
+          <p class="author-work-meta mb-0">
+            {{ entries.size }} published {% if entries.size == 1 %}adaptation{% else %}adaptations{% endif %}
+          </p>
+        </div>
+      {% endif %}
+
+      {% if w.description %}
+        <p class="text-muted mt-3 mb-3">{{ w.description }}</p>
+      {% endif %}
+
+      {% if entries and entries.size > 0 %}
+        <ul class="list-unstyled mb-0 author-work-entry-list">
+          {% for post in entries %}
+            <li class="author-work-entry">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              <div class="text-muted small">
+                Published {{ post.date | date: "%B %-d, %Y" }}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted mt-3 mb-0">No entries published for this work yet.</p>
+      {% endif %}
+    </section>
+
+    {% unless forloop.last %}<hr>{% endunless %}
   {% endfor %}
 
 {% else %}
