@@ -62,9 +62,49 @@ layout: base
         </div>
       {% endif %}
 
-      <div class="blog-post">
-        {{ content }}
-      </div>
+<div class="blog-post">
+  {% assign quote_count = page.quotes | size %}
+
+  {% if quote_count > 0 %}
+    {% assign content_segments = content | split: '</p>' %}
+    {% assign paragraph_number = 0 %}
+    {% assign unmatched_quotes = page.quotes | where_exp: "quote", "quote.after_paragraph == nil" %}
+
+    {% for segment in content_segments %}
+      {% assign segment_stripped = segment | strip %}
+      {% if segment_stripped != "" %}
+        {{ segment }}
+        {% if segment contains '<p' %}</p>{% endif %}
+
+        {% if segment contains '<p' %}
+          {% assign paragraph_number = paragraph_number | plus: 1 %}
+
+          {% for quote in page.quotes %}
+            {% if quote.after_paragraph == paragraph_number %}
+              <blockquote class="inline-quote-callout">
+                <p>{{ quote.text | newline_to_br }}</p>
+              </blockquote>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% if unmatched_quotes.size > 0 %}
+      <section class="additional-quotes">
+        <h2 class="additional-quotes-heading">Additional quotes</h2>
+
+        {% for quote in unmatched_quotes %}
+          <blockquote class="inline-quote-callout">
+            <p>{{ quote.text | newline_to_br }}</p>
+          </blockquote>
+        {% endfor %}
+      </section>
+    {% endif %}
+  {% else %}
+    {{ content }}
+  {% endif %}
+</div>
 
       {% if page.tags.size > 0 %}
         <div class="blog-tags">
