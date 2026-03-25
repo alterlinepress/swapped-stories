@@ -1,0 +1,41 @@
+<div class="post-footer">
+  <div class="post-footer__closing">
+  <p class="post-footer__summary">
+    Thanks for reading <em>Swapped Stories</em>! This project is shaped by readers like you who follow along, share ideas, and help choose what to adapt next.
+  </p>
+  </div>
+
+  <div class="post-footer__engagement">
+    <div class="post-footer__button-row">
+      <button
+        class="engagement-toggle js-engagement-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="post-subscribe-panel"
+        data-target="post-subscribe-panel"
+      >
+        Subscribe for updates
+      </button>
+
+      <button
+        class="engagement-toggle js-engagement-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="post-vote-panel"
+        data-target="post-vote-panel"
+      >
+        Vote on the next book
+      </button>
+    </div>
+
+    <div class="post-footer__panel-row">
+      <div id="post-subscribe-panel" class="engagement-panel" hidden>
+        {% include subscribe-inline.html form_id="post-subscribe" %}
+      </div>
+
+      <div id="post-vote-panel" class="engagement-panel" hidden>
+        {% include next-book-vote.html form_id="post-vote" %}
+      </div>
+    </div>
+  </div>
+</div>
