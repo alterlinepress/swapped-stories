@@ -24,7 +24,13 @@ These are not meant to replace the originals or to suggest that gender can be re
 
 ## How can I start reading?
 
-You can browse adaptations by [work](/works), [author](/authors), or [tag](/tags), or start with the featured works on the homepage. The [Latest](/latest) page collects the most recent additions.
+You can browse adaptations by [work](/works), [author](/authors), or [tag](/tags), or start with the featured works on the homepage. The [latest](/latest) page collects the most recent additions.
+
+## How can I suggest a book? 
+
+You can vote on upcoming adaptations or suggest a work you'd like to see. If you're suggesting a work, please include the title, author, and why you think it would make an interesting gender-swapped adaptation.
+
+{% include next-book-vote.html %}
 
 ## How can I get in touch?
 
