@@ -1,0 +1,34 @@
+{% assign form_id = include.form_id | default: "subscribe-form" %}
+
+<div class="contact-card contact-card--compact subscribe-inline">
+  <h2 class="contact-card__title">Subscribe for updates</h2>
+  <p class="contact-card__note">Get an email when the next story or chapter is released.</p>
+
+  <form
+    class="contact-form contact-form--compact js-subscribe-form"
+    action="https://formspree.io/f/xlgornal"
+    method="POST"
+  >
+    <div class="contact-form__field">
+      <label for="{{ form_id }}-email">Email address</label>
+      <input
+        id="{{ form_id }}-email"
+        type="email"
+        name="email"
+        autocomplete="email"
+        required
+      >
+    </div>
+
+    <button class="contact-form__submit" type="submit">Subscribe</button>
+  </form>
+
+  <div class="contact-success js-subscribe-success" hidden>
+    <h3>Thanks for subscribing.</h3>
+    <p>You’re on the list for future updates.</p>
+  </div>
+
+  <div class="contact-error js-subscribe-error" hidden>
+    <p>Something went wrong. Please try again.</p>
+  </div>
+</div>
