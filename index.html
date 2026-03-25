@@ -41,6 +41,12 @@ description: A literary project adapting public-domain texts through gender swap
 
     <div class="latest-adaptations-list">
       {% for post in site.posts limit:3 %}
+        {% assign matched_work = site.works | where: "work_id", post.work_id | first %}
+        {% assign matched_author = nil %}
+        {% if matched_work %}
+          {% assign matched_author = site.authors | where: "slug", matched_work.author_id | first %}
+        {% endif %}
+
         {%- capture thumbnail -%}
           {% if post.thumbnail-img %}
             {{ post.thumbnail-img }}
@@ -69,6 +75,15 @@ description: A literary project adapting public-domain texts through gender swap
             <h3 class="latest-adaptation-title">
               <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
             </h3>
+
+            {% if matched_work %}
+              <div class="latest-adaptation-meta text-muted small">
+                From <a href="{{ matched_work.url | relative_url }}">{{ matched_work.title | default: matched_work.name }}</a>
+                {% if matched_author %}
+                  · By <a href="{{ matched_author.url | relative_url }}">{{ matched_author.name | default: matched_author.title }}</a>
+                {% endif %}
+              </div>
+            {% endif %}
 
             <div class="latest-adaptation-excerpt">
               {{ post.excerpt | strip_html | truncatewords: 24 }}
