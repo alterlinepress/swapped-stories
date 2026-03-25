@@ -10,7 +10,7 @@ description: Contact information and project details for Swapped Stories.
 
 Have a question about the project, a correction to suggest, or an idea for a future story? Send me a message using the form below or reach out on [Instagram](https://www.instagram.com/swappedstories). I usually reply within a few days.
 
-If you're suggesting a story, please include the title, author, and why you think it would make an interesting gender-swapped adaptation. 
+If you're suggesting a story, please include the title, author, and why you think it would make an interesting gender-swapped adaptation.
 
 <div class="contact-card">
   <h2 class="contact-card__title">Send a Message</h2>
@@ -90,5 +90,3 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
-
-{% include next-book-vote.html %}
