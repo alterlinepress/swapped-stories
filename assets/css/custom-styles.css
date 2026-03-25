@@ -409,6 +409,11 @@ footer{margin-top: auto;}
   color: inherit;
 }
 
+.latest-adaptation-meta {
+  margin-top: 0.2rem;
+  margin-bottom: 0.45rem;
+}
+
 .latest-adaptation-excerpt {
   line-height: 1.5;
 }
