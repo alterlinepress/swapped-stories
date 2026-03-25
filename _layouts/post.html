@@ -46,30 +46,20 @@ layout: base
         </div>
       {% endif %}
 
-      {% if page.youtube_url %}
-        {% assign yt = page.youtube_url | strip %}
-        {% assign yt_id = nil %}
-
-        {%- if yt contains "youtu.be/" -%}
-          {% assign yt_id = yt | split: "youtu.be/" | last | split: "?" | first %}
-        {%- elsif yt contains "watch?v=" -%}
-          {% assign yt_id = yt | split: "watch?v=" | last | split: "&" | first %}
-        {%- elsif yt contains "/embed/" -%}
-          {% assign yt_id = yt | split: "/embed/" | last | split: "?" | first %}
-        {%- endif -%}
-
-        <div class="format-callout" role="note">
+      {% if page.youtube_url or page.spotify_url %}
+        <div class="format-callout mb-6" role="note">
           <div class="format-callout__text">
             Also available on
           </div>
           <div class="format-callout__links">
-            <a class="format-pill" href="{{ page.youtube_url }}" target="_blank" rel="noopener">YouTube</a>
+            {% if page.youtube_url %}
+              <a class="format-pill" href="{{ page.youtube_url }}" target="_blank" rel="noopener">YouTube</a>
+            {% endif %}
             {% if page.spotify_url %}
               <a class="format-pill" href="{{ page.spotify_url }}" target="_blank" rel="noopener">Spotify</a>
             {% endif %}
           </div>
         </div>
-        <br>
       {% endif %}
 
       <div class="blog-post">
